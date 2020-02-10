@@ -9,7 +9,7 @@ class GC:
 
 
 GC_lst = []
-with open("rosalind_gc.txt", "r") as file:
+with open("rosalind.txt", "r") as file:
     lines = file.readlines()
     for line in lines:
         if line[0] == ">":

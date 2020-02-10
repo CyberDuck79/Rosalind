@@ -1,18 +1,19 @@
 # Mendel's First Law
 
-# Import comb (combination operation) from the scipy library
-from scipy.special import comb
+from math import factorial
 
-def calculateProbability(k, m, n):
-    # Calculate total number of organisms in the population:
-    totalPop = k + m + n
-    # Calculate the number of combos that could be made (valid or not):
-    totalCombos = comb(totalPop, 2)
-    # Calculate the number of combos that have a dominant allele therefore are valid:
-    validCombos = comb(k, 2) + k*m + k*n + .5*m*n + .75*comb(m, 2)
-    probability = validCombos/totalCombos
-    return probability
 
-# Example Call:
-print(calculateProbability(2, 2, 2))
-# Example Output: 0.783333333333
+def couple(n, k):
+    return (factorial(n) / factorial(n - k)) / 2
+
+
+def dominant_probability(k, m, n):
+    total_pop = k + m + n
+    total_couple = couple(total_pop, 2)
+    print(total_couple)
+    # all possible k only couple, all k,m couple, all k,n couple, 1/2 for m,n couple, 1/4 m,m couple
+    valid_couple = couple(k, 2) + (k * m) + (k * n) + (m * n) * .5 + couple(m, 2) * .75
+    return valid_couple/total_couple
+
+
+print(dominant_probability(29, 19, 19))
